@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
 import { AppContainer } from 'react-hot-loader';
 
-import Root from './containers/Root';
+import Root from './Root';
 import './app.global.scss';
 
 
@@ -29,8 +29,8 @@ render(
 );
 
 if ((module as any).hot) {
-  (module as any).hot.accept('./containers/Root', () => {
-    const NextRoot = require('./containers/Root').default;
+  (module as any).hot.accept('./Root', () => {
+    const NextRoot = require('./Root').default;
     render(
       <AppContainer>
         <NextRoot store={stores} history={history} />
