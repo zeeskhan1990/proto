@@ -1,4 +1,5 @@
 # electron-react-mobx-typescript-boilerplate 
+[![Greenkeeper badge](https://badges.greenkeeper.io/konding/electron-react-mobx-typescript-boilerplate.svg)](https://greenkeeper.io/)
 
 This is a slight modificiation of the great [electron-react-typescript-boilerplate](https://github.com/iRath96/electron-react-typescript-boilerplate) by iRath96.
 Instead of Redux this version uses  MobX.
