@@ -1,6 +1,13 @@
 import * as React from 'react';
 import glamorous from 'glamorous';
+import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 // import {css} from 'glamor';
+
+loadTheme({
+  palette: {
+    'themePrimary': 'red'
+  }
+});
 
 const MyGrid = glamorous.div('ms-font-xl', {
   margin: 'auto',
