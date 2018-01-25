@@ -2,6 +2,7 @@ import * as React from 'react';
 import glamorous , {ThemeProvider} from 'glamorous';
 import * as Palettes from '../globals/palette';
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
+import { Nav, INavProps } from 'office-ui-fabric-react/lib/Nav';
 // import {css} from 'glamor';
 
 //Has to be made dynamic theme resolver
@@ -28,39 +29,38 @@ const Box = glamorous.div({
   padding: 10
 });
 
-const Sidebar = glamorous(Box)({
-  gridArea: 'sidebar'
-},({theme}) => ({
-  backgroundColor: currentPalette.themePrimary,
-  color: currentPalette.neutralLighterAlt,
-}))
-
 const Header = glamorous(Box)({
   display: 'flex',
   alignItems:'center',
   gridArea: 'header'
 },({theme}) => ({
   backgroundColor: currentPalette.neutralPrimary,
-  color: currentPalette.neutralLighterAlt,
+  color: currentPalette.neutralLighterAlt
 }));
+
+const Sidebar = glamorous(Box)({
+  gridArea: 'sidebar',
+  padding: 0
+},({theme}) => ({
+  backgroundColor: currentPalette.themePrimary,
+  color: currentPalette.neutralLighterAlt
+}))
 
 const Content = glamorous(Box)({
   gridArea: 'content'
 },({theme}) => ({
   backgroundColor: currentPalette.neutralLighterAlt,
-  color: currentPalette.black,
+  color: currentPalette.black
 }));
 
-/* 
-grid-template-rows: [row1-start] 25px [row1-end row2-start] 25px [row2-end];
-grid-template-columns: 1fr 50px auto;
-grid-template-areas: 
-  "header header header" 
-  "footer footer footer"; 
-*/
 
 export default class App extends React.Component<any, any> {
 
+  constructor(props: INavProps) {
+    super(props);
+    this._onClickHandler = this._onClickHandler.bind(this);
+  }
+  
   renderDevTool() {
     if (process.env.NODE_ENV !== 'production') {
       const DevTools = require('mobx-react-devtools').default;
@@ -69,12 +69,59 @@ export default class App extends React.Component<any, any> {
     return null;
   };
 
+  private _onClickHandler(e: React.MouseEvent<HTMLElement>) {
+    alert('test');
+    return false;
+  }
+
   render() {
     return (
       <ThemeProvider theme={currentPalette}>
         <MyGrid>
           <Header>Header</Header>
-          <Sidebar>Sidebar</Sidebar>
+          <Sidebar>
+          <div>
+              <Nav
+                groups={
+                  [
+                    {
+                      links:
+                      [
+                        {
+                          name: 'Home',
+                          url: '/second',
+                          links: [{
+                            name: 'Activity',
+                            url: '/second',
+                            key: 'key1'
+                          },
+                          {
+                            name: 'News',
+                            url: '/second',
+                            key: 'key2'
+                          }],
+                          isExpanded: true
+                        },
+                        { name: 'Documents', url: '/second', key: 'key3', isExpanded: true },
+                        { name: 'Pages', url: '/second', key: 'key4' },
+                        { name: 'Notebook', url: '/second', key: 'key5' },
+                        { name: 'Long Name Test for ellipse', url: '/second', key: 'key6' },
+                        {
+                          name: 'Edit',
+                          url: '/second',
+                          onClick: this._onClickHandler,
+                          icon: 'Edit',
+                          key: 'key8'
+                        }
+                      ]
+                    }
+                  ]
+                }
+                className={'my-nav-class'}
+                initialSelectedKey={ 'key1' }
+              />
+            </div>
+          </Sidebar>
           <Content>
             {this.props.children}
             {/* {this.renderDevTool()} */}

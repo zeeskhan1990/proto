@@ -8,7 +8,7 @@ export default class Home extends React.Component {
         <div>
         Hello Second World!!!
         </div>
-        <Link to="/">Home Page</Link>
+        <Link to="/">Go to First World</Link>
       </div>
     );
   }
