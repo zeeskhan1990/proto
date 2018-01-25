@@ -1,12 +1,14 @@
 import * as React from 'react';
-import glamorous from 'glamorous';
+import glamorous , {ThemeProvider} from 'glamorous';
+import * as Palettes from '../globals/palette';
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 // import {css} from 'glamor';
 
+//Has to be made dynamic theme resolver
+const currentPalette = Palettes.azurePalette;
+
 loadTheme({
-  palette: {
-    'themePrimary': 'red'
-  }
+  palette: currentPalette
 });
 
 const MyGrid = glamorous.div('ms-font-xl', {
@@ -19,33 +21,35 @@ const MyGrid = glamorous.div('ms-font-xl', {
   gridTemplateAreas: `
       "header header header"
       "sidebar content content"
-    `,
+    `
 });
-
-/* const baseStyle = css({
-  padding: 10
-}); */
 
 const Box = glamorous.div({
   padding: 10
 });
 
-/* const Sidebar = glamorous(Box)({
-  backgroundColor: '#71B1D1',
-  color: '#fff',
-}) */
+const Sidebar = glamorous(Box)({
+  gridArea: 'sidebar'
+},({theme}) => ({
+  backgroundColor: currentPalette.themePrimary,
+  color: currentPalette.neutralLighterAlt,
+}))
 
-const Header = glamorous(Box)('ms-bgColor-neutralDark ms-fontColor-neutralLighterAlt', {
-  /* backgroundColor: '#343A41',
-  color: '#fff', */
+const Header = glamorous(Box)({
   display: 'flex',
-  alignItems:'center'
-});
+  alignItems:'center',
+  gridArea: 'header'
+},({theme}) => ({
+  backgroundColor: currentPalette.neutralPrimary,
+  color: currentPalette.neutralLighterAlt,
+}));
 
-/* const Content = glamorous(Box)({
-  backgroundColor: '#fff',
-  color: '#000'
-}); */
+const Content = glamorous(Box)({
+  gridArea: 'content'
+},({theme}) => ({
+  backgroundColor: currentPalette.neutralLighterAlt,
+  color: currentPalette.black,
+}));
 
 /* 
 grid-template-rows: [row1-start] 25px [row1-end row2-start] 25px [row2-end];
@@ -67,14 +71,16 @@ export default class App extends React.Component<any, any> {
 
   render() {
     return (
-      <MyGrid>
-        <Header css={{ gridArea: 'header' }}>Header</Header>
-        <Box className={`ms-bgColor-themePrimary ms-fontColor-neutralLighterAlt`} css={{ gridArea: 'sidebar' }}>Sidebar</Box>
-        <Box className={`ms-bgColor-white ms-fontColor-black`} css={{ gridArea: 'content' }}>
-          {this.props.children}
-          {/* {this.renderDevTool()} */}
-        </Box>
-      </MyGrid>
+      <ThemeProvider theme={currentPalette}>
+        <MyGrid>
+          <Header>Header</Header>
+          <Sidebar>Sidebar</Sidebar>
+          <Content>
+            {this.props.children}
+            {/* {this.renderDevTool()} */}
+          </Content>
+        </MyGrid>
+      </ThemeProvider>
     );
   }
 };
