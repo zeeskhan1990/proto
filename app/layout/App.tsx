@@ -1,13 +1,15 @@
 import * as React from 'react';
 import glamorous , {ThemeProvider, /* Div */} from 'glamorous';
 import * as Palettes from '../globals/palette';
+import {items, farItems} from '../globals/header';
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 import { Nav, INavProps } from 'office-ui-fabric-react/lib/Nav';
+import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 /* import { Icon } from 'office-ui-fabric-react/lib/Icon'; */
 /* import { Layer, LayerHost } from 'office-ui-fabric-react/lib/Layer'; */
 /* import { autobind } from 'office-ui-fabric-react/lib/Utilities'; */
 /* import { DirectionalHint } from 'office-ui-fabric-react/lib/common/DirectionalHint'; */
-/* import {css} from 'glamor'; */
+import {css} from 'glamor';
 
 //Has to be made dynamic theme resolver
 const currentPalette = Palettes.azurePalette;
@@ -57,6 +59,11 @@ const Content = glamorous(Box)({
   color: currentPalette.black
 }));
 
+const commandBarStyle = css({
+  backgroundColor: currentPalette.neutralPrimary,
+  color: currentPalette.neutralLighterAlt
+})
+
 
 export default class App extends React.Component<any, any> {
 
@@ -92,7 +99,12 @@ export default class App extends React.Component<any, any> {
             <Div className='brand-div'>
               <span>Coglite</span>
             </Div> */}
-
+            <CommandBar
+              isSearchBoxVisible={ false }
+              items={ items }
+              farItems={ farItems }
+              className={`${commandBarStyle}`}
+            />
 
           </Header>
           <Sidebar>

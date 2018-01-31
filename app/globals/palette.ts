@@ -36,7 +36,7 @@ const basePallette = {
     yellowLight:'#fff100'
 }
 
-const defaultPalette = {
+export const defaultPalette = {
     ...basePallette,
     themeDarker: '#004578',
     themeDark: '#005a9e',
@@ -60,10 +60,8 @@ const defaultPalette = {
     neutralLighterAlt:'#f8f8f8'
 }
 
-const azurePalette = {
+export const azurePalette = {
     ...defaultPalette,
     themePrimary: '#71B1D1',
     neutralPrimary: '#343A41'
 }
-
-export {defaultPalette, azurePalette}

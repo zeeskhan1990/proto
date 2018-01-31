@@ -1,11 +1,23 @@
+import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+
 export const items = [
     {
       key: 'headerMenu',
       name: '',
-      icon: 'CollapseMenu',
+     /*  icon: 'CollapseMenu', */
       ariaLabel: 'Main menu of Coglite',
+      className: 'test-header-class',
+      iconProps: {
+          iconName: 'CollapseMenu',
+          className: 'good-icon'
+      },
       ['data-automation-id']: 'newHeaderMenu',
-      onClick: () => { return; }
+      onClick:  (ev?: React.MouseEvent<HTMLElement>, item?: IContextualMenuItem) => {
+          console.log("HEADER CLICKED");
+          console.log(ev);
+          console.log(item); 
+          return;
+        }
     },
     {
       key: 'coglite',
@@ -50,6 +62,11 @@ export const items = [
       key: 'accountManagement',
       name: '',
       icon: 'AccountManagement',
-      onClick: () => { return; }
+      onClick:  (ev?: React.MouseEvent<HTMLElement>, item?: IContextualMenuItem) => {
+        console.log("ACCOUNT CLICKED");
+        console.log(ev);
+        console.log(item); 
+        return;
+      }
     }
   ];
