@@ -146,7 +146,7 @@ export default class App extends React.Component<any, any> {
             {this.props.children}
             {/* {this.renderDevTool()} */}
           </Content>
-        <Layer hostId='layerhost1'>
+        <Layer>
           <div className={`${layerStyle}`}>Example Layer Content</div>
         </Layer>
         </MyGrid>
