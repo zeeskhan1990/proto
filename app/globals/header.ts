@@ -1,6 +1,6 @@
 import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 
-export const items = [
+export const items:IContextualMenuItem[]  = [
     {
       key: 'headerMenu',
       name: '',
