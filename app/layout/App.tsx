@@ -1,13 +1,13 @@
 import * as React from 'react';
-import glamorous , {ThemeProvider, Div} from 'glamorous';
+import glamorous , {ThemeProvider, /* Div */} from 'glamorous';
 import * as Palettes from '../globals/palette';
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 import { Nav, INavProps } from 'office-ui-fabric-react/lib/Nav';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { Layer, LayerHost } from 'office-ui-fabric-react/lib/Layer';
+/* import { Icon } from 'office-ui-fabric-react/lib/Icon'; */
+/* import { Layer, LayerHost } from 'office-ui-fabric-react/lib/Layer'; */
 /* import { autobind } from 'office-ui-fabric-react/lib/Utilities'; */
 /* import { DirectionalHint } from 'office-ui-fabric-react/lib/common/DirectionalHint'; */
-import {css} from 'glamor';
+/* import {css} from 'glamor'; */
 
 //Has to be made dynamic theme resolver
 const currentPalette = Palettes.azurePalette;
@@ -57,11 +57,6 @@ const Content = glamorous(Box)({
   color: currentPalette.black
 }));
 
-const layerStyle = css({
-  padding:20,
-  backgroundColor: 'blue'
-});
-
 
 export default class App extends React.Component<any, any> {
 
@@ -91,13 +86,14 @@ export default class App extends React.Component<any, any> {
       <ThemeProvider theme={currentPalette}>
         <MyGrid>
           <Header>
-            <Div css={{display:'flex',flexFlow:'column',justifyContent:'flex-start'}}>
+            {/* <Div css={{display:'flex',flexFlow:'column',justifyContent:'flex-start'}}>
               <Icon iconName='CollapseMenu' className='ms-IconExample' />
-              <LayerHost id='layerhost1' className='LayerExample-customHost' />
             </Div>
             <Div className='brand-div'>
               <span>Coglite</span>
-            </Div>
+            </Div> */}
+
+
           </Header>
           <Sidebar>
           <div>
@@ -146,9 +142,6 @@ export default class App extends React.Component<any, any> {
             {this.props.children}
             {/* {this.renderDevTool()} */}
           </Content>
-        <Layer>
-          <div className={`${layerStyle}`}>Example Layer Content</div>
-        </Layer>
         </MyGrid>
       </ThemeProvider>
     );
