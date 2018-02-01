@@ -9,7 +9,8 @@ import { CommandBar, ICommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 /* import { Layer, LayerHost } from 'office-ui-fabric-react/lib/Layer'; */
 /* import { autobind } from 'office-ui-fabric-react/lib/Utilities'; */
 /* import { DirectionalHint } from 'office-ui-fabric-react/lib/common/DirectionalHint'; */
-import {css} from 'glamor';
+/* import {css} from 'glamor'; */
+import { mergeStyles } from '@uifabric/merge-styles';
 
 //Has to be made dynamic theme resolver
 const currentPalette = Palettes.azurePalette;
@@ -59,11 +60,17 @@ const Content = glamorous(Box)({
   color: currentPalette.black
 }));
 
-const commandBarStyle = css({
+/* const commandBarStyle = css({
   backgroundColor: currentPalette.neutralPrimary,
   color: currentPalette.neutralLighterAlt,
   gridArea: 'header'
-})
+}); */
+
+const testClass = mergeStyles({
+  backgroundColor: currentPalette.neutralPrimary,
+  color: currentPalette.neutralLighterAlt,
+  gridArea: 'header'
+});
 
 
 export default class App extends React.Component<any, any> {
@@ -104,7 +111,7 @@ export default class App extends React.Component<any, any> {
               isSearchBoxVisible={ false }
               items={ items }
               farItems={ farItems }
-              className={`${commandBarStyle}`}
+              className={testClass}
               componentRef= {(component: ICommandBar ) => {
                   console.log("COMPONENT REF WORKING");
                   console.log(component);
