@@ -4,7 +4,7 @@ import * as Palettes from '../globals/palette';
 import {items, farItems} from '../globals/header';
 import { loadTheme } from 'office-ui-fabric-react/lib/Styling';
 import { Nav, INavProps } from 'office-ui-fabric-react/lib/Nav';
-import { CommandBar } from 'office-ui-fabric-react/lib/CommandBar';
+import { CommandBar, ICommandBar } from 'office-ui-fabric-react/lib/CommandBar';
 /* import { Icon } from 'office-ui-fabric-react/lib/Icon'; */
 /* import { Layer, LayerHost } from 'office-ui-fabric-react/lib/Layer'; */
 /* import { autobind } from 'office-ui-fabric-react/lib/Utilities'; */
@@ -35,14 +35,14 @@ const Box = glamorous.div({
   padding: 10
 });
 
-const Header = glamorous(Box)({
+/* const Header = glamorous(Box)({
   display: 'flex',
   alignItems:'center',
   gridArea: 'header'
 },({theme}) => ({
   backgroundColor: currentPalette.neutralPrimary,
   color: currentPalette.neutralLighterAlt
-}));
+})); */
 
 const Sidebar = glamorous(Box)({
   gridArea: 'sidebar',
@@ -61,7 +61,8 @@ const Content = glamorous(Box)({
 
 const commandBarStyle = css({
   backgroundColor: currentPalette.neutralPrimary,
-  color: currentPalette.neutralLighterAlt
+  color: currentPalette.neutralLighterAlt,
+  gridArea: 'header'
 })
 
 
@@ -92,7 +93,7 @@ export default class App extends React.Component<any, any> {
     return (
       <ThemeProvider theme={currentPalette}>
         <MyGrid>
-          <Header>
+          {/* <Header> */}
             {/* <Div css={{display:'flex',flexFlow:'column',justifyContent:'flex-start'}}>
               <Icon iconName='CollapseMenu' className='ms-IconExample' />
             </Div>
@@ -104,9 +105,13 @@ export default class App extends React.Component<any, any> {
               items={ items }
               farItems={ farItems }
               className={`${commandBarStyle}`}
+              componentRef= {(component: ICommandBar ) => {
+                  console.log("COMPONENT REF WORKING");
+                  console.log(component);
+              }}
             />
 
-          </Header>
+          {/* </Header> */}
           <Sidebar>
           <div>
               <Nav
